@@ -1,41 +1,11 @@
 ﻿using System;
 using System.Collections.Specialized;
+using QueueIT.KnownUser.V3.AspNetCore.Abstractions;
+using QueueIT.KnownUser.V3.AspNetCore.Helpers;
+using QueueIT.KnownUser.V3.AspNetCore.Models;
 
-namespace QueueIT.KnownUser.V3.AspNetCore
+namespace QueueIT.KnownUser.V3.AspNetCore.Repositories
 {
-    internal interface IUserInQueueStateRepository
-    {
-        void Store(
-            string eventId,
-            string queueId,
-            int? fixedCookieValidityMinutes,
-            string cookieDomain,
-            bool isCookieHttpOnly,
-            bool isCookieSecure,
-            string redirectType,
-            string secretKey);
-
-        StateInfo GetState(
-            string eventId,
-            int cookieValidityMinutes,
-            string secretKey,
-            bool validateTime = true);
-
-        void CancelQueueCookie(
-            string eventId,
-            string cookieDomain,
-            bool isCookieHttpOnly,
-            bool isCookieSecure);
-
-        void ReissueQueueCookie(
-            string eventId,
-            int cookieValidityMinutes,
-            string cookieDomain,
-            bool isCookieHttpOnly,
-            bool isCookieSecure,
-            string secretKey);
-    }
-
     internal class UserInQueueStateCookieRepository : IUserInQueueStateRepository
     {
         private const string _QueueITDataKey = "QueueITAccepted-SDFrts345E-V3";
@@ -46,7 +16,7 @@ namespace QueueIT.KnownUser.V3.AspNetCore
         private const string _RedirectTypeKey = "RedirectType";
         private const string _FixedCookieValidityMinutesKey = "FixedValidityMins";
 
-        private IHttpContextProvider _httpContextProvider;
+        private readonly IHttpContextProvider _httpContextProvider;
 
 
         internal static string GetCookieKey(string eventId)
@@ -229,31 +199,6 @@ namespace QueueIT.KnownUser.V3.AspNetCore
                     return false;
             }
             return true;
-        }
-    }
-
-    internal class StateInfo
-    {
-        public bool IsFound { get; }
-        public bool IsValid { get; }
-        public string QueueId { get; }
-        public bool IsStateExtendable
-        {
-            get
-            {
-                return IsValid && !FixedCookieValidityMinutes.HasValue;
-            }
-        }
-        public int? FixedCookieValidityMinutes { get; }
-        public string RedirectType { get; }
-
-        public StateInfo(bool isFound, bool isValid, string queueId, int? fixedCookieValidityMinutes, string redirectType)
-        {
-            IsFound = isFound;
-            IsValid = isValid;
-            QueueId = queueId;
-            FixedCookieValidityMinutes = fixedCookieValidityMinutes;
-            RedirectType = redirectType;
         }
     }
 }

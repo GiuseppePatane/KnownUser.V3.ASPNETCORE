@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
+using QueueIT.KnownUser.V3.AspNetCore.Abstractions;
 
 namespace QueueIT.KnownUser.V3.AspNetCore.IntegrationConfig
 {

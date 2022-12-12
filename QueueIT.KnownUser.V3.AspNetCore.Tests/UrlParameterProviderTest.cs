@@ -1,4 +1,5 @@
 ﻿using System;
+using QueueIT.KnownUser.V3.AspNetCore.Helpers;
 using Xunit;
 
 namespace QueueIT.KnownUser.V3.AspNetCore.Tests
@@ -56,7 +57,7 @@ namespace QueueIT.KnownUser.V3.AspNetCore.Tests
         [Fact]
         public void TryExtractQueueParams_Using_No_QueueitToken_Expect_Null()
         {
-            var queueParameter = QueueParameterHelper.ExtractQueueParams("");
+            var queueParameter =  QueueParameterHelper.ExtractQueueParams("");
             Assert.True(queueParameter == null);
         }
     }

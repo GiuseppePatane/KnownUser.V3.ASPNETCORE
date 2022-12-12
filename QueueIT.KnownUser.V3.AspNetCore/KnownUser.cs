@@ -1,42 +1,20 @@
 ﻿using QueueIT.KnownUser.V3.AspNetCore.IntegrationConfig;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Web;
+using QueueIT.KnownUser.V3.AspNetCore.Abstractions;
+using QueueIT.KnownUser.V3.AspNetCore.Helpers;
+using QueueIT.KnownUser.V3.AspNetCore.Http;
+using QueueIT.KnownUser.V3.AspNetCore.Models;
+using QueueIT.KnownUser.V3.AspNetCore.Repositories;
+using QueueIT.KnownUser.V3.AspNetCore.Services;
 
 namespace QueueIT.KnownUser.V3.AspNetCore
 {
-    public interface IHttpRequest
-    {
-        string UserAgent { get; }
-        NameValueCollection Headers { get; }
-        Uri Url { get; }
-        string UserHostAddress { get; }
-        string GetCookieValue(string cookieKey);
-        string GetRequestBodyAsString();
-    }
-
-    internal interface IHttpResponse
-    {
-        void SetCookie(string cookieName, string cookieValue, string domain, DateTime expiration, bool isCookieHttpOnly, bool isCookieSecure);
-    }
-
-    internal interface IHttpContextProvider
-    {
-        IHttpRequest HttpRequest
-        {
-            get;
-        }
-        IHttpResponse HttpResponse
-        {
-            get;
-        }
-    }
-
-    public static class KnownUser
+    public static class KnownUserOld
     {
         public const string QueueITTokenKey = "queueittoken";
         public const string QueueITDebugKey = "queueitdebug";

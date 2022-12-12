@@ -88,7 +88,7 @@ namespace QueueIT.KnownUser.V3.AspNetCore.IntegrationConfig
         public const string And = "And";
     }
 
-    internal static class ActionType
+    public static class ActionType
     {
         public const string IgnoreAction = "Ignore";
         public const string CancelAction = "Cancel";

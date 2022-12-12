@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
+using QueueIT.KnownUser.V3.AspNetCore.Helpers;
+using QueueIT.KnownUser.V3.AspNetCore.Repositories;
 using Xunit;
 
 namespace QueueIT.KnownUser.V3.AspNetCore.Tests

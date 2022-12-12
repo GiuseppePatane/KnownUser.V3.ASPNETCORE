@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
 using System.Text;
+using QueueIT.KnownUser.V3.AspNetCore.Models;
 
-namespace QueueIT.KnownUser.V3.AspNetCore
+namespace QueueIT.KnownUser.V3.AspNetCore.Helpers
 {
-    internal class QueueParameterHelper
+    public class QueueParameterHelper
     {
         public const string TimeStampKey = "ts";
         public const string ExtendableCookieKey = "ce";
@@ -185,7 +186,7 @@ namespace QueueIT.KnownUser.V3.AspNetCore
         }
     }
 
-    internal class QueueUrlParams
+    public class QueueUrlParams
     {
         public DateTime TimeStamp { get; set; } = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         public string EventId { get; set; }

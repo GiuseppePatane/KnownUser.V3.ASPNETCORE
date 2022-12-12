@@ -1,38 +1,15 @@
-﻿using QueueIT.KnownUser.V3.AspNetCore.IntegrationConfig;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using QueueIT.KnownUser.V3.AspNetCore.Abstractions;
+using QueueIT.KnownUser.V3.AspNetCore.Helpers;
+using QueueIT.KnownUser.V3.AspNetCore.IntegrationConfig;
+using QueueIT.KnownUser.V3.AspNetCore.Models;
 
-namespace QueueIT.KnownUser.V3.AspNetCore
+namespace QueueIT.KnownUser.V3.AspNetCore.Services
 {
-    internal interface IUserInQueueService
-    {
-        RequestValidationResult ValidateQueueRequest(
-            string targetUrl,
-            string queueitToken,
-            QueueEventConfig config,
-            string customerId,
-            string secretKey);
-
-        RequestValidationResult ValidateCancelRequest(
-            string targetUrl,
-            CancelEventConfig config,
-            string customerId,
-            string secretKey);
-
-        RequestValidationResult GetIgnoreResult(string actionName);
-
-        void ExtendQueueCookie(
-            string eventId,
-            int cookieValidityMinutes,
-            string cookieDomain,
-            bool isCookieHttpOnly,
-            bool isCookieSecure,
-            string secretKey);
-    }
-
     internal class UserInQueueService : IUserInQueueService
     {
-        internal const string SDK_VERSION = "v3-aspnetcore-" + "3.7.0";
+        public const string SDK_VERSION = "v3-aspnetcore-" + "3.7.0";
 
         private readonly IUserInQueueStateRepository _userInQueueStateRepository;
 

@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using QueueIT.KnownUser.V3.AspNetCore.Abstractions;
+using QueueIT.KnownUser.V3.AspNetCore.Helpers;
+using QueueIT.KnownUser.V3.AspNetCore.Models;
+using QueueIT.KnownUser.V3.AspNetCore.Services;
 using Xunit;
 
 namespace QueueIT.KnownUser.V3.AspNetCore.Tests
